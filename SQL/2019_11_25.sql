@@ -150,3 +150,119 @@ drop table emp01;
 
 desc emp01;
 
+
+-- 기존 테이블의 스키마 복사(제약조건 제외)해서 테이블 생성
+create table emp02
+as
+select * from emp;
+desc emp;
+desc emp02;
+
+create table emp03
+as
+select ename, empno from emp;
+desc emp03;
+select * from emp03;
+
+create table emp04
+as
+select * from emp where deptno=10;
+select * from emp04;
+
+create table emp06
+as
+select * from emp where 1=0;
+select * from emp06;
+
+
+-- 테이블의 수정 : 컬럼의 추가, 컬럼의 수정, 컬럼의 삭제
+-- 컬럼의 추가
+desc emp01;
+
+alter table emp01
+add (job varchar2(9));
+
+-- 컬럼의 수정
+alter table emp01
+modify (job varchar2(30));
+
+-- 컬럼의 삭제
+alter table emp01
+drop column job;
+
+create table emp07
+as
+select * from emp;
+select * from emp07;
+drop table emp07;
+
+select * from emp02;
+truncate table emp02;
+
+-- 테이블의 이름 변경
+rename emp02 to test;
+rename test to emp02;
+
+
+-- 제약 조건
+insert into dept /*(deptno, dname, loc)*/ values (10, 'test', 'seoul');    -- 생략 가능
+
+desc dept;
+
+
+
+-- NOT NULL 제약 조건
+drop table emp01;
+create table emp01( 
+    empno number(4) not null,
+    ename varchar2(20) not null,
+    job varchar2(10),
+    deptno number(2)
+);
+
+insert into emp01 values (1001, 'son', 'manager', 10);
+insert into emp01 values (1001, 'lee', 'manager', 20);
+select * from emp01;
+
+drop table emp03;
+select * from emp03;
+create table emp03(
+    empno number(4) unique,
+    ename varchar2(20) not null,
+    job varchar2(10),
+    deptno number(2)
+);
+insert into emp03 values (1001, 'son', 'manager', 10);
+insert into emp03 values (1002, 'king', 'manager', 30);
+
+drop table emp04;
+create table emp04(
+    empno number(4) constraint emp04_empno_uk unique,
+    ename varchar2(20) constraint emp04_ename_nn not null,
+    job varchar2(10),
+    deptno number(2)
+);
+insert into emp04 values (1001, 'son', 'manager', 10);
+insert into emp04 values (1002, 'lee', 'manager', 30);
+
+drop table emp05;
+create table emp05(
+    empno number(4) constraint emp05_empno_pk primary key,
+    ename varchar2(20) constraint emp05_ename_nn not null,
+    job varchar2(10),
+    deptno number(2)
+);
+insert into emp05 values (1001, 'son', 'manager', 10);
+insert into emp05 values (1001, 'lee', 'manager', 30);
+
+drop table emp06;
+create table emp06(
+    empno number(4) constraint emp06_empno_pk primary key,
+    ename varchar2(20) constraint emp06_ename_nn not null,
+    job varchar2(10),
+    deptno number(2) constraint emp06_deptno_fk references dept(deptno)
+);
+insert into emp06 values (1001, 'son', 'manager', null);
+insert into emp06 values (1002, 'lee', 'manager', 40);
+select * from emp06;
+
