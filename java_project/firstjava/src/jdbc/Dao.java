@@ -100,13 +100,49 @@ public class Dao {
 		
 	}
 	
+	// 부서정보 삭제
+	// 부서 번호로 삭제 대상 선택
+	public void deleteDept(Connection conn, int deptno) throws SQLException {
+		
+		String sql = "delete from dept where deptno="+deptno;
+		Statement stmt = conn.createStatement();
+		
+		int rCnt = stmt.executeUpdate(sql);
+		
+		if(rCnt>0) {
+			System.out.println("삭제되었습니다.");
+		} else {
+			System.out.println("삭제하고자 하는 데이터가 존재하지않습니다.");
+		}
+		
+		stmt.close();
+		
+	}
 	
-	
-	
-	
-	
-	
-	
+	// 부서 번호를 부서정보 검색하고 부서정보를 출력
+
+	public void searchDept(Connection conn, int deptno) throws SQLException {
+		
+		String sql = "select * from dept where deptno=?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, deptno);
+		
+		ResultSet rs = pstmt.executeQuery();
+		
+		if(rs.next()) {
+			System.out.println("찾으시는 "+ deptno +"번 부서의 정보");
+			System.out.println("----------------------------------------");
+			System.out.println(rs.getInt("deptno") + " | " + rs.getString("dname") + " | " + rs.getString("loc"));
+			System.out.println("----------------------------------------");
+		} else {
+			System.out.println("찾으시는 부서의 정보가 존재하지 않습니다.");
+		}
+		
+		
+		rs.close();
+		pstmt.close();
+		
+	}
 	
 	
 	
