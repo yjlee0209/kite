@@ -3,15 +3,28 @@
 
     <head>
         <title>회원가입</title>
+        
+        <link rel="stylesheet" href="default.css">
+        
+        <style>
+        
+            select.byear {
+                width: 200px;
+                height: 30px;
+                
+                font-size: 1.3em;
+            }
+            
+        </style>
     </head>
 
     <body>
 
-        <h1>회원가입</h1>
+        <h1 class="title">회원가입</h1>
         <hr>
 
         <form action="memberReg.html" method="get">
-            <table>
+            <table class="inputBox">
                 <tr>
                     <td>아이디(이메일)</td>
                     <td><input type="text"></td>
@@ -32,7 +45,7 @@
                 <tr>
                     <td>태어난 년도</td>
                     <td>
-                        <select>
+                        <select class="byear">
                             <option>2000</option>
                             <option>1999</option>
                             <option>1998</option>
