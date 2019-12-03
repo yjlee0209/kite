@@ -100,10 +100,10 @@ hs_err_pid*
 *.asp
 *.cer
 *.csr
-*.css
+#*.css
 *.htm
 #*.html
-*.js
+#*.js
 *.jsp
 *.php
 *.rss
