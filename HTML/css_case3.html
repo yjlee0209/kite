@@ -1,0 +1,80 @@
+<!doctype>
+<html>
+    <head>
+        <title>One True layout</title>
+        <style>
+            
+            * {
+                margin: 0;
+                padding: 0;
+            }
+        
+            #header {
+                width: 900px;
+                height: 100px;
+                
+                background-color: green;
+                line-height: 100px;
+                
+            }
+            #aside {
+                width: 200px;
+                height: 400px;
+                
+                background-color: #FF0000;
+                line-height: 400px;
+            
+                float: left;
+            }
+            #content {
+                width: 660px;
+                height: 360px;
+                
+                background-color: #0000FF;
+                line-height: 400px;
+                
+                float: left;
+                
+                border: 10px solid;
+                padding: 10px;
+            }
+            #footer {
+                width: 900px;
+                height: 100px;
+                
+                background-color: purple;
+                line-height: 100px;
+            }
+            
+            #wrap {
+                overflow: hidden;
+            }
+            
+            .font_style {
+                color: #FFFFFF;
+                font-weight: bold;
+                font-size: 2em;
+                text-align: center;
+            }
+            
+        </style>
+        
+        
+    </head>
+    <body>
+        
+        <div id="header" class="font_style">HEADER</div>
+        
+        <div id="wrap">
+            <div id="aside" class="font_style">ASIDE</div>
+
+            <div id="content" class="font_style">CONTENT</div>
+        </div>
+        <div id="footer" class="font_style">FOOTER</div>
+        
+        
+        
+        
+    </body>
+    
+</html>

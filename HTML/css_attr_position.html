@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+    <head>
+        <title>위치 속성</title>
+        <style>
+            
+            /*박스의 기본 속성*/
+            div.box {
+                width: 150px;
+                height: 150px;
+                border: thin solid #000;
+                text-align: center;
+                line-height: 150px;
+                position: absolute;
+            }
+            
+            div.wrap {
+                border: thin solid;
+                height: 200px;
+                
+                /*절대좌표 적용된 하위 태그의 시작점 적용*/
+                position: relative;
+                
+                /*영역 밖의 컨텐츠 노출에 대한 속성*/
+                /*overflow: */
+                overflow-y: auto;
+            }
+            
+            #b1 {
+                background-color: lightblue;
+                left: 50px;
+                top: 50px;
+                z-index: 1000;
+            }
+            #b2 {
+                background-color: cyan;
+                left: 100px;
+                top: 100px;
+                z-index: 500;
+            }
+            #b3 {
+                background-color: blue;
+                left: 150px;
+                top: 150px;
+                z-index: 300;
+            }
+        
+        </style>
+    
+    </head>
+    
+    <body>
+        
+        <h1>header - 1</h1>
+    
+        <div class="wrap">
+            <div id="b1" class="box">box1</div>
+            <div id="b2" class="box">box2</div>
+            <div id="b3" class="box">box3</div>
+        </div>  
+        
+        <h1>header - 1</h1>
+    </body>
+</html>

@@ -1,0 +1,256 @@
+<!doctype>
+<html>
+    <head>
+        <title>레이아웃</title>
+        
+        <link href="https://fonts.googleapis.com/css?family=Gugi&display=swap" rel="stylesheet">
+        
+        <style>
+            
+            
+           
+            /*초기화*/
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            
+            /*바디 포기화*/
+            body {
+                background-color: beige;
+            }
+            
+            /*메인 블럭*/
+            #main_wrap {
+                width: 858px;
+                /*height: 600px;*/
+                
+                padding: 20px;
+                
+                background-color: #FFF;
+                
+                border: 1px solid #DDD;
+                border-radius: 5px;
+                
+                box-shadow: 5px 5px 5px #DDD;
+                
+                margin: 10px auto;
+            }
+            
+            /*헤더*/
+            #header {
+                height: 80px;
+                
+                /*background-color: antiquewhite;*/
+            }
+            #header>h1.title {
+                margin-top: 10px;
+                margin-left: 30px; 
+                font-family: 'Gugi', cursive;
+            }
+            #header>h1.title + span {
+                margin-left: 30px;
+                font-family: 'Gugi', cursive;
+            }
+            
+            /*네비게이션*/
+            #navi {
+                height: 35px;
+                
+                /*background-color: burlywood;*/
+                
+                overflow: hidden;
+                
+                border-top: 1px solid #DDD;
+                border-bottom: 1px solid #DDD;
+            }
+            #navi>ul.menu {
+                width: 400px;
+                
+                float: left;
+                overflow: hidden;
+                
+                list-style: none;
+            
+            }
+            #navi>ul.menu>li {
+                float: left;
+                
+                width: 100px;
+                height: 35px;
+                
+                line-height: 35px;
+                text-align: center;
+            }
+            #navi>ul.menu>li:hover {
+                background-color: burlywood;
+                color: white;
+            }
+            #navi>div.searchbox {
+                float: right;
+                vertical-align: middle;
+                height: 35px;
+            }
+            #navi>div.searchbox>input[type=text] {
+                border-radius: 20px 0 0 20px;
+                border: 1px solid #DDD;
+                height: 24px;
+                width: 120px;
+                padding-left: 15px;
+                font-size: 18px;
+                vertical-align: middle;
+                margin-top: 4px;
+            }
+            #navi>div.searchbox>input[type=button] {
+                padding: 3px 10px; 
+                
+                border: 1px solid #DDD;
+                border-radius: 0 20px 20px 0;
+                height: 24px;
+                background-color: #EEE;
+                vertical-align: middle;
+                margin-top: 4px;
+            }
+            
+            
+            /*컨텐츠 렙*/
+            #content_wrap {
+                overflow: hidden;
+            }
+            
+            /*컨텐츠*/
+            #content {
+                /*height: 300px;*/
+                width: 630px;
+                /*background-color: chocolate;*/
+                float: left;
+            }
+            #content>article {
+                padding: 10px;
+                border-bottom: 1px solid #DDD;
+                margin-bottom: 10px;
+            }
+            #content>article>h1 {
+                /*margin-top: 10px;
+                margin-bottom: 10px;*/
+                margin: 5px 0;
+            }
+            #content>article>h5{
+                
+            }
+            #content>article>img {
+                margin: 5px 0;
+            }
+            
+            /*aside*/
+            #aside {
+                /*height: 200px;*/
+                width: 228px;
+                /*background-color: darksalmon;*/
+                float: left;
+            }
+            #aside>h3 {
+                margin-top: 20px;
+            }
+            #aside>ul {
+                list-style: none;
+                margin-top: 5px;
+                margin-left: 15px;
+                margin-bottom: 25px;
+            }
+            #aside>ul>li {
+                height: 25px;
+            }
+            
+            
+            /*푸터*/
+            #footer {
+                height: 100px;
+                /*background-color: firebrick; */
+                text-align: center;
+                line-height: 100px;
+                
+                border-top: 1px solid #DDD;
+            }
+            
+            
+            
+        </style>
+    </head>
+    <body>
+        
+        <!--메인 렙-->
+        <div id="main_wrap">
+        
+            <!--페이지 해더: 로고, BI, CI, text-->
+            <div id="header">
+                <h1 class="title">TITLE Blog</h1>
+                <span>블로그 페이지입니다.</span>
+            </div>
+            <!--페이지 해더 종료-->
+            
+            <!--페이지 네비게이션: 메뉴, 검색박스-->
+            <div id="navi">
+                <!--메뉴-->
+                <ul class="menu">
+                    <li>HTML5</li>
+                    <li>CSS3</li>
+                    <li>JavaScript</li>
+                </ul>
+                <div class="searchbox">
+                    <input type="text"><input type="button" value="검색">
+                </div>
+            </div>
+            <!--네비게이션 종료-->
+            
+            <!--컨텐츠와 사이드 메누 감싸는 렙-->
+            <div id="content_wrap">
+                <!--컨텐츠 : article(제목, 날짜, 이미지, 본문)-->
+                <div id="content">
+                
+                    <article>
+                        <h1>PIZZA!</h1>
+                        <h5>2019.12.04</h5>
+                        <img src="img/food/pizza.jpg">
+                        <p>
+                        Pizza (Italian: [ˈpittsa], Neapolitan: [ˈpittsə]) is a savory dish of Italian origin, consisting of a usually round, flattened base of leavened wheat-based dough topped with tomatoes, cheese, and often various other ingredients (anchovies, olives, meat, etc.) baked at a high temperature, traditionally in a wood-fired oven.[1] A small pizza is sometimes called a pizzetta.<p>
+                        In Italy, pizza served in formal settings, such as at a restaurant, is presented unsliced and eaten with the use of a knife and fork.[2][3] In casual settings it is cut into wedges to be eaten while held in the hand.
+                        </p>
+                    </article>
+                    
+                </div>
+                <!--컨텐츠 종료-->
+                <!--사이드 메뉴 : 카테고리 메뉴-->
+                <div id="aside">
+                
+                    <h3>카테고리 1</h3>
+                    <ul>
+                        <li>데이터</li>
+                        <li>데이터</li>
+                        <li>데이터</li>
+                        <li>데이터</li>
+                        <li>데이터</li>                        
+                    </ul>
+                    <h3>카테고리 2</h3>
+                    <ul>
+                        <li>데이터</li>
+                        <li>데이터</li>
+                        <li>데이터</li>
+                        <li>데이터</li>
+                        <li>데이터</li>
+                    </ul>
+                    
+                </div>
+                <!--사이드 종료-->
+            </div>
+            <!--컨텐츠&사이드 렙 종료-->
+            
+            <!--푸터 시작 : 카피라이트, 화사정보, 글로벌 메뉴-->
+            <div id="footer">CopyRight 2019</div>
+            <!--푸터 종료-->
+            
+            
+        </div>
+    
+    </body>
+</html>
