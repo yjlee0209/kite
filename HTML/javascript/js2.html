@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+    <head>
+        <title>자바스크립트</title>
+        <script>
+        
+            var html='';
+            
+            html += '<ul>';   // html = html + '<ul>'
+            html += '   <li>hello</li>';
+            html += '   <li>javascript~!!</li>';
+            html += '</ul>';
+            
+            /*document.body.innerHTML = html;*/
+            
+            alert('body tag 이전 실행')
+            
+            window.onload = function(){
+                alert(document.body.innerHTML);
+                document.body.innerHTML = html;
+                alert(document.body.innerHTML);
+            };
+            
+        </script>
+        <style>
+        </style>
+    </head>
+    <body>
+        <h1>이곳은 h1 태그가 위치합니다.</h1>
+    
+    
+    </body>
+    <script>
+    
+        /*var str=document.body.innerHTML;
+        alert(str);*/
+        /*document.body.innerHTML = html;*/
+        
+    </script>
+
+</html>
