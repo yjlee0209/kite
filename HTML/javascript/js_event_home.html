@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+    <head>
+        <title>자바스크립트 FORM 이벤트 처리</title>
+        <script>
+        </script>
+        <style>
+            
+            /*div {
+                border: 1px solid red;
+            }
+            p {
+                border: 1px solid blue;
+            }*/
+            
+        </style>
+    </head>
+    <body>
+        
+        <!--<div id="div">
+            <p id="p">click!!</p>
+        </div>-->
+        
+        <form onsubmit="return chkPw()" id="form" action="http://www.naver.com" method="get">
+            
+            메시지 <input type="text" id="msg" value="비밀번호를 입력해주세요."> <br>
+            비밀번호 <input type="password" id="pw" name="pw"> <br>
+            비밀번호 확인 <input type="password" id="repw" name="repw"> <br>
+            이용약관 동의 <input type="checkbox" id="chk" name="chk"> <br>
+            <input type="submit" value="확인">
+            
+        </form>
+        
+        <input type="text" placeholder="이름을 입력해주세요.">
+        
+        <input type="button" value="삭제" onclick="del(1)">
+        
+    </body>
+    <script>
+        
+        /*window.onload = function() {
+            
+            var form = document.getElementById('form');
+            form.onsubmit = function() {
+                
+                //alert('submit btn click!!')
+                //return false;
+                var pw = document.getElementById('pw').value;
+                var repw = document.getElementById('repw').value;
+                
+                //alert(pw+' : '+repw);
+                
+                if(pw===repw) {
+                    alert('비밀번호가 일치합니다.');
+                    return true;
+                } else {
+                    alert('비밀번호가 일치하지 않습니다.');
+                    return false;
+                }
+                
+            }
+            
+        };*/
+        
+        /*window.onload = function() {
+          
+            var div = document.getElementById('div');
+            var p = document.getElementById('p');
+            
+            div.onclick = function(){
+                alert('div click!');
+            }
+            
+            p.onclick = function(e){
+                
+                var event = e || window.event;
+                
+                alert('p click!');
+                
+                if (event.stopPropagation) {
+                    event.stopPropagation();
+                }
+            }
+            
+            
+        };*/
+        
+        function del(idx) {
+            
+            var chk = confirm('삭제하시겠습니까?')
+            
+            if(chk) {
+                alert('삭제되었습니다.');
+            }
+            
+        }
+        
+        
+        function chkPw() {
+            
+            var msg = document.getElementById('msg');
+            var pw = document.getElementById('pw').value;
+            var repw = document.getElementById('repw').value;
+            
+            //alert(msg.value);
+            
+            var chk = document.getElementById('chk');
+            
+            //alert(chk.checked);
+            
+            if (!chk.checked) {
+                alert('이용약관에 동의해주세요.');
+                return false;                
+            } 
+            
+            if (pw == null || pw.length==0) {
+                alert('비밀번호를 입력해주세요!');
+                document.getElementById('pw').focus;
+                return false;
+            }
+            
+            if (repw == null || repw.length==0) {
+                alert('비밀번호 확인을 입력해주세요!');
+                document.getElementById('repw').focus;
+                return false;
+            }
+            
+            if(pw == repw) {
+                alert('비밀번호가 일치합니다.');
+                return true;
+            } else {
+                alert('비밀번호가 일치하지 않습니다.');
+                msg.value = '비밀번호가 일치하지 않습니다.';
+                return false;
+            }
+            
+            
+        }
+        
+        
+    </script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
