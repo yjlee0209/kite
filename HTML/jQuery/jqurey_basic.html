@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+    <head>
+        <title>jQuery Basic</title>
+        
+        <style>
+        
+            .light{
+                width : 50%;
+                height : 50px;
+            }
+            
+        </style>
+        
+        <!--CDN 방식으로 jQuery 라이브러리를 로드-->
+        <script
+            src="https://code.jquery.com/jquery-1.12.4.min.js"
+            integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+            crossorigin="anonymous"></script>
+        
+        <script>
+            
+            // onload 이벤트와 같다
+            $(document).ready(function(){
+                
+                // 문서 객체 생성
+                $('*').css('color', 'red');
+                
+                // 태그 선택
+                $('h1').css('background', 'black');
+                
+                // id 선택
+                $('#two').css('color', 'yellow');
+                
+                // class 선택
+                $('h1.title').css('color', 'green');
+                
+                // :first, last, even
+                $('h1:even').css('background', 'gray');
+                
+                
+                var array = [
+                    {name:'네이버', url:'http://www.naver.com'},
+                    {name:'다음', url:'http://www.daum.net'},
+                    {name:'페이스북', url:'http://www.facebook.com'},                 
+                ];
+                
+                // .each(원본, 함수) 메서드를 이용한 배열처리
+                $.each(array, function(index, item){
+                    
+                    var output = ' ';
+                    
+                    output += '<a href="'+item.url+'">'+item.name+'</a>';
+                    
+                    document.body.innerHTML += output;
+                    
+                });
+                
+                $('h1').each(function(index, item){
+                    // innrtHtml
+                    $(item).html('+'+index);  // get
+                    
+                    if(index%2==0){
+                        $(item).addClass('light');
+                    }
+                    
+                });
+                
+                
+                
+            });
+            
+        </script>
+        
+    </head>
+    
+    <body>
+        
+        <h1> header-0 </h1>
+        <h1 id="two"> header-1 </h1>
+        <h1 class="title"> header-2 </h1>
+        <h1> header-3 </h1>
+        <h1> header-4 </h1>
+        
+        
+    </body>
+</html>
