@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Member Manager</title>
+        
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        
+        <style>
+            
+            td {
+                padding: 5px;
+                font-weight: bold;
+                
+            }
+            
+            input[type=text], input[type=password] {
+                height: 26px;
+                font-size: 20px;
+                padding: 0 10px;
+            }
+            input[type=submit] {
+                font-size: 24px;
+                padding: 15px;
+                border: 1px solid #DDD;
+                background-color: aquamarine;
+            }
+            
+            .table {
+                width : 100%;
+                border-collapse: collapse;
+            }
+            .table td, .table th {
+                border: 1px solid #DDD;
+                padding: 10px;
+                text-align: center;
+            }
+            
+            #editBox{
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                background-color: #FFF;
+                padding: 15px;
+                border: 3px solid #DDD;
+                display: none;
+            }
+            
+            
+        </style>
+        
+    </head>
+    <body>
+        
+        <h1>Member Manager</h1>
+        <hr>
+        
+        <!--회원 정보를 입력하는 폼 시작-->
+        <div id="inputBox">
+            <h3>회원등록</h3>
+            <form id="regForm" method="get">
+                <table>
+                    <tr>
+                        <td> 아이디 </td>
+                        <td> 비밀번호 </td>
+                        <td> 이름 </td>
+                        <td rowspan="2"> <input type="submit" value="등록"> </td>
+                    </tr>
+                    <tr>
+                        <td> <input type="text" id="uid"> </td>
+                        <td> <input type="password" id="upw"> </td>
+                        <td> <input type="text" id="uname"> </td>
+                    </tr>
+                </table>
+            </form>
+            
+        </div>
+        <!--회원 정보를 입력하는 폼 끝-->
+        <hr>
+        
+        <!--회원 리스트 시작-->
+        <div>
+            <h3>회원 리스트</h3>
+            <table class="table">
+                <tbody id="listRow">
+                    <tr>
+                        <th> 순번(index) </th>
+                        <th> 아이디 </th>
+                        <th> 비밀번호 </th>
+                        <th> 이름 </th>
+                        <th> 관리 </th>
+                    </tr>
+                </tbody>
+            </table>
+            
+        </div>
+        <!--회원 리스트 끝-->
+        
+        <div id="editBox">
+            <h3>회원 데이터 수정</h3>
+            <hr>
+            <form id="editForm" onsubmit="return editData();">
+                <input type="hidden" id="eidx">
+                <table>
+                    <tr>
+                        <td> 아이디(이메일) </td>
+                        <td> <input type="text" id="eid"> </td>
+                    </tr>
+                    <tr>
+                        <td> 비밀번호 </td>
+                        <td> <input type="password" id="epw"> </td>
+                    </tr>
+                    <tr>
+                        <td> 이름 </td>
+                        <td> <input type="text" id="ename"> </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: center;"> <input type="submit" value="수정"> </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        
+        
+        
+        <script>
+            
+            /*회원 정보를 저장하는 객체를 저장하는 배열 생성*/
+            var members = [];
+            
+            $(document).ready(function(){
+                
+                setListTable();
+                
+                // form -> 문서객체로 캐스팅
+                // form -> 이벤트를 등록
+                //var form = document.querySelector('#regForm');
+                
+                $('#regForm').submit(function(){
+                    
+                    // 회원 아이디, 비밀번호, 이름 : input -> 캐스팅
+                    //var uid = document.querySelector('#uid');
+                    var uid = $('#uid');
+                    //var upw = document.querySelector('#upw');
+                    var upw = $('#upw');
+                    //var uname = document.querySelector('#uname');
+                    var uname = $('#uname');
+                    
+                    // 유효성 검사
+                    if(uid == null || uid.val().trim.length==0){
+                        alert('아이디를 입력해주세요!');
+                        uid.focus();
+                        return false;
+                    }
+                    if(upw == null || uid.val().trim.length==0){
+                        alert('비밀번호를 입력해주세요!');
+                        uid.focus();
+                        return false;
+                    }if(uname == null || uid.val().trim.length==0){
+                        alert('이름을 입력해주세요!');
+                        uid.focus();
+                        return false;
+                    }
+                    
+                    //alert(uid.value+' : '+upw.value+' : '+uname.value);
+                    
+                    /*var memberObj = {
+                        mid : uid.value,
+                        mpw : upw.value,
+                        mname : uname.value,
+                        showInfo : function() {
+                            alert('아이디 : '+this.mid+'\n이름 : '+this.mname+'\n비밀번호 : '+this.mpw);
+                        }
+                        
+                    };*/
+                    
+                    var memberObj = {
+                        mid : uid.val(),
+                        mpw : upw.val(),
+                        mname : uname.val(),
+                        showInfo : function() {
+                            alert('아이디 : '+this.mid+'\n이름 : '+this.mname+'\n비밀번호 : '+this.mpw);
+                        }
+                        
+                    };
+                    
+                    
+                    /*배열의 객체 저장*/
+                    members.push(memberObj);
+                    
+                    // localstorage 저장
+                    localStorage.setItem('members', JSON.stringify(members));
+                    
+                    //uid.value='';
+                    uid.val('');
+                    //upw.value='';
+                    upw.val('');
+                    //uname.value='';
+                    uname.val('');
+                    
+                    memberObj.showInfo();
+                    
+                    alert('members 배열의 요소 개수 : '+members.length);
+                    
+                    setListTable();
+                    
+                    return false;
+                    
+                });
+                
+                // 저장된 데이터가 있는지 확인
+                // 1. 있다 -> 저장된 JSON 문자열을 배열 객체에 저장
+                //        -> 테이블 리스트 출력
+                // 2. 없다 -> 비어있는 배열 객체를 localstorage 저장
+
+               
+                
+            });
+            
+            // members 배열의 요소들을 출력 : 테이블 출력
+            function setListTable(){
+                
+                // 저장된 데이터를 받아온다.
+                var Json_data = localStorage.getItem('members');
+                //alert(Json_data);
+                
+                if(Json_data == null){
+                    
+                    // Object -> JSON
+                    var JSON_members = JSON.stringify(members);
+                    // 데이터 저장
+                    localStorage.setItem('members', JSON_members);
+                
+                } else {
+                   
+                    // JSON -> Object
+                    members = JSON.parse(Json_data);
+                }
+                
+                var strHtml = '';
+                strHtml += '<tr>\n';
+                strHtml += '    <th> 순번(index) </th>\n';
+                strHtml += '    <th> 아이디 </th>\n';
+                strHtml += '    <th> 비밀번호 </th>\n';
+                strHtml += '    <th> 이름 </th>\n';
+                strHtml += '    <th> 관리 </th>\n';
+                strHtml += '</tr>\n';
+
+
+                /*for(var i=0; i<members.length; i++){
+                    var o = members[i];
+                    //strHtml += o.mid+' : '+o.mname+' : '+o.mpw+'\n';
+
+                    strHtml += '<tr>\n';
+                    strHtml += '    <td> '+i+' </td>\n';
+                    strHtml += '    <td> '+o.mid+' </td>\n';
+                    strHtml += '    <td> '+o.mpw+' </td>\n';
+                    strHtml += '    <td> '+o.mname+' </td>\n';
+                    strHtml += '    <td> <a href="javascript:edit('+i+')">수정</a> | <a href="javascript:del('+i+')">삭제</a> </td>\n';
+                    strHtml += '</tr>\n';
+                }*/
+                
+                $.each(members, function(index, item){
+                    
+                    strHtml += '<tr>\n';
+                    strHtml += '    <td> '+index+' </td>\n';
+                    strHtml += '    <td> '+item.mid+' </td>\n';
+                    strHtml += '    <td> '+item.mpw+' </td>\n';
+                    strHtml += '    <td> '+item.mname+' </td>\n';
+                    strHtml += '    <td> <a href="javascript:edit('+i+')">수정</a> | <a href="javascript:del('+i+')">삭제</a> </td>\n';
+                    strHtml += '</tr>\n';
+                    
+                });
+
+                //alert(strHtml);
+
+                /*테이블 로우 등록*/
+                /*테이블의 tbody 테그를 케스팅*/
+                //var listRow = document.getElementById('listRow');
+                var listRow = $('#listRow');
+
+                //listRow.innerHTML = strHtml;
+                listRow.html(strHtml);
+       
+            }
+            
+            /*수정 함수*/
+            function edit(idx){
+                alert(idx+'번 데이터를 수정합니다.');
+                
+                // editBox : display none -> block
+                //var editBox = document.getElementById('editBox');
+                var editBox = $('#editBox');
+                //스타일 변경
+                //editBox.style.display='block';
+                editBox.css('display', 'block');
+                
+                /*editForm에 있는 input 요소들의 테이터를 할당*/
+                var member = members[idx];
+                
+                // eid, epw, ename 캐스팅
+                //document.getElementById('eid').value=member.mid;
+                $('#eid').val(member.mid);
+                //document.getElementById('epw').value=member.mpw;
+                $('#epw').val(member.mpw);
+                //document.getElementById('ename').value=member.mname;
+                $('#ename').val(member.mname);
+                //document.getElementById('eidx').value=idx;
+                $('#eidx').val(idx);
+                
+            }
+            
+            /*배열의 데이터를 수정하는 함수*/
+            function editData(){
+                
+                // editForm 이 감싸고 있는 input 캐스팅
+                //var eidx = document.getElementById('eidx');
+                //var eid = document.getElementById('eid');
+                //var epw = document.getElementById('epw');
+                //var ename = document.getElementById('ename');
+                
+                if($('#eidx') == null || $('#eidx').val().trim().length==0){
+                    alert('수정처리에 문제가 발생했습니다!');
+                    $('#eidx').focus();
+                    return false;
+                }
+                if($('#eid') == null || $('#eid').val().trim().length==0){
+                    alert('아이디를 입력해주세요!');
+                    $('#eid').focus();
+                    return false;
+                }
+                if($('#epw') == null || $('#epw').val().trim().length==0){
+                    alert('비밀번호를 입력해주세요!');
+                    $('#epw').focus();
+                    return false;
+                }
+                if($('#ename') == null || $('#ename').val().trim().length==0){
+                    alert('이름을 입력해주세요!');
+                    $('#ename').focus();
+                    return false;
+                }
+                
+                var nIndex = $('#eidx').val();
+                
+                //배열에서 수정 대상을 찾는다.
+                members[nIndex].mid=$('#eid').val();
+                members[nIndex].mpw=$('#epw').val();
+                members[nIndex].mname=$('#ename').val();
+                
+                // localstorage 저장
+                localStorage.setItem('members', JSON.stringify(members));
+                
+                //editForm 초기화
+                $('#eid').val('');
+                $('#epw').val('');
+                $('#ename').val('');
+                
+                alert('수정되었습니다.')
+                
+                //document.getElementById('editBox').style.display='none';
+                $('#editBox').css('display', 'none');
+                
+                setListTable();
+                
+                return false;
+            }
+
+            /*삭제 함수*/
+            function del(idx){
+                
+                var chk = confirm('삭제하시겠습니까?');
+                
+                if(chk) {
+                    // 삭제 -> 배열의 요소가 삭제
+                    members.splice(idx,1);
+                    
+                    // localstorage 저장
+                    localStorage.setItem('members', JSON.stringify(members));
+
+                    alert(idx+'번 데이터를 삭제합니다.');
+                    
+                    setListTable();
+                }
+            
+            }
+            
+        </script>
+        
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+

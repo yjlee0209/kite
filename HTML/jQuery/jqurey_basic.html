@@ -67,6 +67,35 @@
                 });
                 
                 
+                var xml = '';
+                xml += '<sites>'
+                xml += '    <site>'
+                xml += '        <name>naver</name>'
+                xml += '        <url>http://www.naver.com</url>'
+                xml += '    </site>'
+                xml += '    <site>'
+                xml += '        <name>daum</name>'
+                xml += '        <url>http://www.daum.net</url>'
+                xml += '    </site>'
+                xml += '    <site>'
+                xml += '        <name>facebook</name>'
+                xml += '        <url>http://www.facebook.com</url>'
+                xml += '    </site>'
+                xml += '</sites>'
+                
+                // String -> XML 객체로 변환
+                var xmlDoc = $.parseXML(xml);
+                
+                $(xmlDoc).find('site').each(function(index){
+                    
+                    var html = ' ';
+                    
+                    html += '<h1><a href="'+$(this).find('url').text()+'">'+$(this).find('name').text()+'</a></h1>';
+                    
+                    document.body.innerHTML += html;
+                });
+                
+                
                 
             });
             

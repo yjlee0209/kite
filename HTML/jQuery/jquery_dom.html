@@ -1,0 +1,247 @@
+<!doctype html>
+<html>
+    <head>
+        <title>jQuery Basic</title>
+        
+        <style>
+            
+            * {
+                padding: 0;
+                margin: 0;
+            }
+            .box{
+                width: 100px;
+                height: 100px;
+                background-color: greenyellow;
+            }
+            .select{
+                border: 5px solid red;
+                
+            }
+            .img{
+                height : 70px;
+                width : 100px;
+                margin : 10px;
+            }
+            #imgBox{
+                width: 120px;
+                height: 90px;
+                border: 5px solid #666;
+                overflow: hidden;
+            }
+            
+            
+        </style>
+        
+        <!--CDN 방식으로 jQuery 라이브러리를 로드-->
+        <script
+            src="https://code.jquery.com/jquery-1.12.4.min.js"
+            integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+            crossorigin="anonymous"></script>
+        
+        <script>        
+        </script>
+        
+    </head>
+    
+    <body>
+        
+        <!--<h1 class="box">box</h1>-->
+        
+        <!--<img id="img" class="img" src='../img/food/chicken.jpg'>   
+        <img class="img" src='../img/food/chicken.jpg'>        
+        <img class="img" src='../img/food/chicken.jpg'>-->        
+        
+        <!--<div class="box select"> box-1 </div>
+        <div class="box select"> box-2 </div>
+        <div class="box select"> box-3 </div>
+        <div class="box select"> box-4 </div>-->
+        
+        <div id="imgBox">
+            <img class="img" src="../img/food/salad.jpg">
+            <img class="img" src="../img/food/brochette.jpg">
+            <img class="img" src="../img/food/chawarma.jpg">
+            <img class="img" src="../img/food/spaghetti.jpg">
+            <img class="img" src="../img/food/steak.jpg">
+        </div>
+        
+        <!--년도
+        <select id="year">
+            <option>2019</option>
+            <option>2018</option>
+            <option>2017</option>
+            <option>2016</option>
+        </select>-->
+        
+        
+        <!--<div id="memo">
+            <h1>
+                <span>안녕하세요!</span>
+            </h1>
+        </div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>-->
+        
+        
+        
+        <script> 
+            
+            $(document).ready(function(){
+                
+                // 클래스 속성            
+                //$('h1.box').addClass('select');
+                //$('h1.box').removeClass('box');
+                
+                /*// 속성 : attr
+                var src = $('img#img').attr('src');
+                alert(src);
+                
+                // setter-1
+                $('#img').attr('src', '../img/food/pizza.jpg');
+                
+                // setter-2
+                $('img.img').attr('width', function(index){
+                    var w = (index+1) * 100;
+                    return w;
+                });
+                
+                // setter-3
+                $('.img').attr({
+                    src : '../img/food/pizza.jpg',
+                    width : function(index){
+                        return (index+1)*100;
+                    } ,
+                    height : 100
+                });
+                
+                // setTimeout
+                setTimeout(function(){
+                    $('img').removeAttr('height');
+                }, 3000);
+                // setInterval*/
+                /*
+                // css getter
+                var bcolor = $('div.box:first').css('backgroundColor');
+                alert(bcolor);
+                
+                // css setter-1
+                //$('div.box').css('color', 'blue');
+                //$('div.box').css('fontSize', 30);
+                
+                // css setter-2
+                $('div.box').css('padding', function(index){
+                    return (index+1)*5;
+                });
+                
+                // css setter-3
+                $('div.box').css({
+                    color : 'yellow',
+                    fontSize : 32,
+                    fontWeight : 'bold',
+                    margin : function(index){
+                    return (index+1)*5
+                    },
+                    backgroundColor : 'black'
+                });
+                */
+                /*
+                // 테그 내용 : html(), text()
+                var strHtml = $('#memo').html();
+                var strText = $('#memo').text();
+                
+                //alert(strHtml);
+                //alert(strText);
+                
+                // setter-1
+                var memo = $('#memo');
+                
+                //memo.html('<h3>다음에 만나요!</h3>');
+                memo.text('<h3>다음에 만나요!</h3>');
+                
+                // setter-2
+                $('div').html(function(index){
+                    return '<h2>new header 2 - '+index+'</h2>';
+                });
+                
+                // empty() : 내용 삭제
+                //$('div:even').empty();
+                
+                // remove() : 해당 객체 삭제, 테그 삭제, 요소 삭제
+                $('div:even').remove();
+                
+                
+                $('<h1></h1>').html('안녕하세요~!!').appendTo('div:last');
+                
+                $('<img>').attr({
+                    src : '../img/food/pizza.jpg',
+                    width : 200
+                }).appendTo('body');
+                
+                $('<img>', {
+                    src : '../img/food/hamburger.jpg',
+                    width : 200
+                }).prependTo('div');
+                
+                $('<img>', {
+                    src : '../img/food/hamburger.jpg',
+                    width : 200
+                }).insertBefore('div:first');
+                
+                setTimeout(function(){
+                    $('div').append(function(){
+                        var year = $('#year').val();
+                        return '<h1>'+year+'</h1>';
+                    });
+                },1000*10);
+                */
+                
+                setInterval(function(){
+                    
+                    $('div#imgBox>img.img').first().appendTo('div#imgBox');
+                    
+                }, 1000*1);
+                
+                
+                
+                
+                
+            });
+            
+            // 동적 요소(테그+컨텐트) 생성
+            //$('<h1></h1>').html('<span>hi~</span>');
+            //$('<h1></h1>').text('<span>hi~</span>)';
+            
+        
+            
+            
+            
+            
+            
+            
+        </script>
+
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

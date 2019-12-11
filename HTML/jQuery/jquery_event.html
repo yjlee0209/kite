@@ -1,0 +1,224 @@
+<!doctype html>
+<html>
+    <head>
+        <title>jQuery Event</title>
+        
+        <style>
+            
+            h1.btn, div{
+                width : 50%;
+                margin : 20px;
+                border: 3px solid #000;
+                background-color: chartreuse;
+                cursor: pointer;
+            }
+            .mouseOver{
+                background-color: #000!important;
+                color: #FFF;
+            }
+            textarea{
+                font-size: 2em;
+            }
+            
+            
+        </style>
+        
+        <!--CDN 방식으로 jQuery 라이브러리를 로드-->
+        <script
+            src="https://code.jquery.com/jquery-1.12.4.min.js"
+            integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+            crossorigin="anonymous"></script>
+        
+        <script> 
+            
+        </script>
+        
+    </head>
+    
+    <body>
+        
+        <!--<h1 id="btn" class="btn"> Click - 1 </h1>
+        <h1 class="btn"> Click - 2 </h1>
+        <h1 class="btn"> Click - 3 </h1>-->
+        
+        <!--<h1> header </h1>
+        
+        
+        <div>
+            <h1> 제목 1 </h1>
+            <p> <a href="http://www.naver.com">내용 1</a> </p>
+        </div>
+        <div>
+            <h1> 제목 2 </h1>
+            <p> 내용 2 </p>
+        </div>
+        <div>
+            <h1> 제목 3 </h1>
+            <p> 내용 3 </p>
+        </div>-->
+        
+        <!--<div id="wrap">
+            <h1> header </h1>
+        </div>-->
+        
+        <!--<textarea rows="20" cols="60"></textarea>
+        <h1><span>0</span>/150</h1>
+        <h2></h2>-->
+        
+        <input type="checkbox" id="all">
+        <label for=""> all </label>
+        
+        <div id="check-item">
+            <input type="checkbox"> A <br>
+            <input type="checkbox"> B <br>
+            <input type="checkbox"> C <br>
+            <input type="checkbox"> D <br>
+            <input type="checkbox"> E <br>
+        </div>
+        
+        
+        
+        <script> 
+            
+            $(document).ready(function(){
+                
+                /*$('h1.btn').on('click', function(e){
+                    var strText = $(this).text();
+                    alert(strText);
+                    $(this).html(strText+' + ');
+                });*/
+                
+                /*$('h1.btn').click(function(e){
+                    var strText = $(this).text();
+                    alert(strText);
+                    $(this).html(strText+' + ');
+                    
+                    $(this).off('click');
+                    
+                });*/
+                
+                /*$('h1#btn').on({
+                    mouseenter : function(){
+                        $(this).addClass('mouseOver');
+                    },
+                    mouseleave : function(){
+                        $(this).removeClass('mouseOver');
+                    }
+                });*/
+                
+                /*$('h1').hover(function(e){
+                    $(this).addClass('mouseOver');
+                }, function(e){
+                    $(this).removeClass('mouseOver');
+                });*/
+                
+                              
+                /*$('div').click(function(){
+                    
+                    var h1 = $('h1', this).text();
+                    var p = $('p', this).text();
+                    
+                    alert(h1 + ' : ' +p);
+                    
+                });
+                
+                $('h1').click(function(e){
+                    //alert($(this).text());
+                    
+                    $(this).html(function(index, html){
+                        return html + ' * ';
+                    });
+                    
+                    e.stopPropagation();
+                });
+                
+                setInterval(function(){
+                    $('h1').last().trigger('click');
+                },10000);
+                
+                
+                $('a').click(function(e){
+                    
+                    alert('!!!!!!!!!!');
+                   
+                    //e.preventDefault();
+                    return false;
+                });*/
+                
+                
+                /*$('h1').on('click', function(){
+                    
+                    var length = $('h1').length;
+                    var newHtml = '<h1>' +$(this).html()+' - '+length+'</h1>';
+                    $('#wrap').append(newHtml);
+                    
+                });*/                
+                
+                /* $('#wrap').on('click', 'h1', function(){
+                    var length = $('h1').length;
+                    var newHtml = '<h1>' +$(this).html()+' - '+length+'</h1>';
+                    $('#wrap').append(newHtml);
+                });*/
+                
+                
+                /*$('textarea').keyup(function(){
+                    
+                    var inLength = $(this).val().length;
+                    var remain = 150 - inLength;
+                    
+                    $('span').text(inLength);
+                    $('h2').html(remain);
+                    
+                    if(remain<0){
+                        alert('150자까지만 쓸수있습니다.')
+                        var str = $(this).val().substr(0,150);
+                        $(this).val(str);
+                        
+                        $('span').text(150);
+                        $('h2').html(0);
+                        
+                    }
+
+                });*/
+                
+                
+                $('#all').change(function(){
+                   
+                    if(this.checked){
+                        $('#check-item').children().prop('checked', true);
+                    }else{
+                        $('#check-item').children().prop('checked', false);
+                    }
+                    
+                    
+                });
+                
+                
+                
+            });            
+   
+        </script>
+
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
