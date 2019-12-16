@@ -104,7 +104,7 @@ hs_err_pid*
 *.htm
 #*.html
 #*.js
-*.jsp
+#*.jsp
 *.php
 *.rss
 *.wasm
