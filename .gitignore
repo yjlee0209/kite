@@ -141,3 +141,9 @@ $RECYCLE.BIN/
 
 # End of https://www.gitignore.io/api/web,java,windows,eclipse
  
+jsp_project/Servers/Tomcat v8.5 Server at localhost-config/catalina.policy
+jsp_project/Servers/Tomcat v8.5 Server at localhost-config/catalina.properties
+jsp_project/Servers/Tomcat v8.5 Server at localhost-config/context.xml
+jsp_project/Servers/Tomcat v8.5 Server at localhost-config/server.xml
+jsp_project/Servers/Tomcat v8.5 Server at localhost-config/tomcat-users.xml
+jsp_project/Servers/Tomcat v8.5 Server at localhost-config/web.xml
