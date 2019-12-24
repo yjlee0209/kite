@@ -31,7 +31,7 @@
         <h1 class="title">회원가입</h1>
         <hr>
 
-        <form action="../beans/usebean_1.jsp" method="post">
+        <form action="" method="post">
             <table class="inputBox">
                 <tr>
                     <td>아이디(이메일)</td>
@@ -53,16 +53,7 @@
                 <tr>
                     <td>태어난 년도</td>
                     <td>
-                        <select id="byear" class="byear" name="byear">
-                        <%
-                        	for(int i=2019 ; i>=1950 ; i--){                       
-                        %>
-                        	<option value='<%= i%>'><%= i%></option>	
-                        <%
-                        	};
-                        %>
-                            
-                        </select>
+                        <select id="byear" class="byear" name="byear"></select>
                     </td>
                 </tr>
                 <tr>
