@@ -17,34 +17,21 @@
 		margin : 0;
 		padding : 0;
 	}
-	
-	#nav {
-		overflow : hidden;
-		list-style : none;
-		margin : 10px;
-		border-top : 1px solid #999;
-		border-bottom : 1px solid #999;
-	}
-	#nav>li {
-		float : left;
-		padding : 3px 30px;
-	}
-	
 </style>
 </head>
 <body>
 
-<%@ include file="/WEB-INF/views/frame/header.jsp" %>
+	<c:if test="${resultCnt==1}">
+		<h1> 회원 가입이 되었습니다. </h1>
+	</c:if>
+	
+	<c:if test="${resultCnt==0 or resultCnt == -1}">
+		<h1> 회원 가입중에 오류가 발생했습니다. </h1>
+		<a href="regForm"> 회원가입하기. </a>    <!-- /op/member/reg -> /op/member/regForm -->
+	</c:if>
+	
 
-	<h1> 회원 관리 프로그램 </h1>
-	<h2> INDEX 페이지 </h2>
-	<h3> ${msg} </h3>
-
-
-
-
-
-
+	
 
 
 </body>

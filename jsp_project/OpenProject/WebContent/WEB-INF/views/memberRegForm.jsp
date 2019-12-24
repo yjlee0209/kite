@@ -15,23 +15,42 @@
         <link rel="stylesheet" href="default.css">
         
         <style>
-        
+        	
+        	* {
+				margin : 0;
+				padding : 0;
+			}
+			
             select.byear {
                 width: 200px;
                 height: 30px;
                 
                 font-size: 1.3em;
             }
+            #nav {
+				overflow : hidden;
+				list-style : none;
+				margin : 10px;
+				border-top : 1px solid #999;
+				border-bottom : 1px solid #999;
+			}
+			#nav>li {
+				float : left;
+				padding : 3px 30px;
+			}
             
         </style>
     </head>
 
     <body>
 
+	<%@ include file="/WEB-INF/views/frame/header.jsp" %>
+
+
         <h1 class="title">회원가입</h1>
         <hr>
 
-        <form action="" method="post">
+        <form action="reg" method="post">     <!-- /op/member/regForm -> /op/member/reg -->
             <table class="inputBox">
                 <tr>
                     <td>아이디(이메일)</td>

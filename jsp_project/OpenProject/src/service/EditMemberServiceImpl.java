@@ -10,18 +10,11 @@ import dao.MemberDao;
 import jdbc.ConnectionProvider;
 import model.OpMember;
 
-public class RegMemberServiceImpl implements MemberService {
+public class EditMemberServiceImpl implements MemberService {
 
 	@Override
 	public String process(HttpServletRequest request) {
-	
-		// 사용자 요청 데이터를 받는다.
-		// DAO에 저장 요청 -> DAO 클래스 생성, 기능 메서드를 생성
-		// Connection 객체를 생성해서 메서드에 전달
-		// DAO의 응답은 처리 횟수 : 결과 데이터 -> view 전달 request에 저장
-		// view 응답 데이터를 받아서 
-		
-		String viewPage = "/WEB-INF/views/memberReg.jsp";
+		String viewPage = "/WEB-INF/views/edit.jsp";
 		
 		try {
 			request.setCharacterEncoding("utf-8");
@@ -31,6 +24,7 @@ public class RegMemberServiceImpl implements MemberService {
 		}
 		
 		// 데이터 받기
+		String idx = request.getParameter("idx");
 		String uid = request.getParameter("uid");
 		String pw = request.getParameter("pw");
 		String uname = request.getParameter("uname");
@@ -38,26 +32,30 @@ public class RegMemberServiceImpl implements MemberService {
 		String gender = request.getParameter("gender");
 		String uphoto = request.getParameter("pfile");
 		
-		OpMember member = new OpMember(0, uid, pw, uname, Integer.parseInt(byear), gender, uphoto);
+		OpMember member = new OpMember(Integer.parseInt(idx), uid, pw, uname, Integer.parseInt(byear), gender, uphoto);
 		
 		System.out.println("Insert Data : "+member);
 		
 		Connection conn = null;
-		int resultCnt = 0;
+		int result = 0;
 		
 		MemberDao dao = new MemberDao();
 		
 		try {
 			conn = ConnectionProvider.getConnection();
 			
-			resultCnt = dao.insertMember(conn, member);
-			
-		} catch(SQLException se) {
-			resultCnt = -1;
-			se.printStackTrace();
+			result = dao.editMember(conn, member);
+					
+		} catch (SQLException e) {
+			result = -1;
+			e.printStackTrace();
 		}
 		
-		request.setAttribute("resultCnt", resultCnt);
+		request.setAttribute("resultCnt", result);
+		
+		
+		
+		
 		
 		return viewPage;
 	}

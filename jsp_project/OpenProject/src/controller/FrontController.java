@@ -10,9 +10,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import service.IndexMemberServiceImpl;
 import service.MemberService;
+import service.DeleteMemberServiceImpl;
+import service.EditFormMemberService;
+import service.EditMemberServiceImpl;
+import service.IndexMemberServiceImpl;
+import service.ListMemberServiceImpl;
 import service.RegFormMemberServiceImpl;
+import service.RegMemberServiceImpl;
 
 public class FrontController extends HttpServlet {
 
@@ -24,11 +29,24 @@ public class FrontController extends HttpServlet {
 		
 		// /요청
 		uriMap.put("/", new IndexMemberServiceImpl());
+		
 		// /index
 		uriMap.put("/index", new IndexMemberServiceImpl());
+		
 		// /member/regForm
 		uriMap.put("/member/regForm", new RegFormMemberServiceImpl());
-	
+		uriMap.put("/member/reg", new RegMemberServiceImpl());
+		
+		// 회원 리스트
+		uriMap.put("/member/list", new ListMemberServiceImpl());
+		
+		// 회원 정보 수정
+		uriMap.put("/member/editForm", new EditFormMemberService());
+		uriMap.put("/member/edit", new EditMemberServiceImpl());
+		
+		// 회원 정보 삭제
+		uriMap.put("/member/delete", new DeleteMemberServiceImpl());
+		
 		// 기능 확장 : Service 구현 클래스 생성
 		
 	}
@@ -79,18 +97,6 @@ public class FrontController extends HttpServlet {
 		// 포워딩
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		
 		
