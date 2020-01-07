@@ -10,7 +10,7 @@ import dao.MemberDao;
 import jdbc.ConnectionProvider;
 import model.OpMember;
 
-public class RegMemberServiceImpl implements MemberService {
+public class RegAjaxMemberServiceImpl implements MemberService {
 
 	@Override
 	public String process(HttpServletRequest request) {
@@ -21,7 +21,7 @@ public class RegMemberServiceImpl implements MemberService {
 		// DAO의 응답은 처리 횟수 : 결과 데이터 -> view 전달 request에 저장
 		// view 응답 데이터를 받아서 
 		
-		String viewPage = "/WEB-INF/views/memberRegAjax.jsp";
+		String viewPage = "/WEB-INF/views/memberReg.jsp";
 		
 		try {
 			request.setCharacterEncoding("utf-8");
@@ -57,12 +57,7 @@ public class RegMemberServiceImpl implements MemberService {
 			se.printStackTrace();
 		}
 		
-		String result = "success";
-		if(resultCnt<1) {
-			result = "fail";
-		}
-		
-		request.setAttribute("result", resultCnt);
+		request.setAttribute("resultCnt", resultCnt);
 		
 		return viewPage;
 	}

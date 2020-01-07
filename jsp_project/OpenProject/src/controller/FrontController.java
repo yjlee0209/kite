@@ -11,11 +11,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import service.MemberService;
+import service.MyPageMemberServiceImpl;
+import service.RegAjaxMemberServiceImpl;
 import service.DeleteMemberServiceImpl;
 import service.EditFormMemberService;
 import service.EditMemberServiceImpl;
+import service.IdChkMemberServiceImpl;
 import service.IndexMemberServiceImpl;
+import service.KakaoLoginMemberServiceImpl;
 import service.ListMemberServiceImpl;
+import service.LoginFormMemberServiceImpl;
+import service.LoginMemberServiceImpl;
+import service.LogoutMemberServiceImpl;
 import service.RegFormMemberServiceImpl;
 import service.RegMemberServiceImpl;
 
@@ -36,6 +43,10 @@ public class FrontController extends HttpServlet {
 		// /member/regForm
 		uriMap.put("/member/regForm", new RegFormMemberServiceImpl());
 		uriMap.put("/member/reg", new RegMemberServiceImpl());
+		uriMap.put("/member/reg_ajax", new RegAjaxMemberServiceImpl());
+		
+		// /member/idChk
+		uriMap.put("/member/idChk", new IdChkMemberServiceImpl());
 		
 		// 회원 리스트
 		uriMap.put("/member/list", new ListMemberServiceImpl());
@@ -46,6 +57,20 @@ public class FrontController extends HttpServlet {
 		
 		// 회원 정보 삭제
 		uriMap.put("/member/delete", new DeleteMemberServiceImpl());
+		
+		//회원 로그인
+		uriMap.put("/login/loginForm", new LoginFormMemberServiceImpl());
+		uriMap.put("/login/login", new LoginMemberServiceImpl());
+		
+		//카카오 로그인
+		uriMap.put("/login/kakaologin", new KakaoLoginMemberServiceImpl());
+		
+		//회원 로그아웃
+		uriMap.put("/login/logout", new LogoutMemberServiceImpl());
+				
+		//회원 마이페이지 
+		uriMap.put("/users/mypage", new MyPageMemberServiceImpl());
+		
 		
 		// 기능 확장 : Service 구현 클래스 생성
 		
