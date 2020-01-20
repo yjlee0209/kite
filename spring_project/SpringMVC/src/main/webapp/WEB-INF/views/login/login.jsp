@@ -9,6 +9,9 @@
 <body>
 
 	<h1>로그인</h1>
-
+	
+	${login}
+	
+	
 </body>
 </html>
