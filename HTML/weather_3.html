@@ -1,0 +1,104 @@
+<html>
+
+<head>
+    <title>예보</title>
+    <style>
+        div.box {
+            border : 5px solid #DDD;
+            padding : 10px;
+            margin : 5px;
+            line-height: 160%;
+            width: 300px;
+            float: left;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.12.1.min.js"></script>
+</head>
+
+<body>
+    
+    <script>
+        $(document).ready(function(){
+           
+            $.ajax({
+                url : 'http://localhost:8080/gd/weather/weather2',
+                data : {
+                    version: 2,
+                    city: 서울,
+                    county: 강서구,
+                    village: 화곡동,
+                    appKey: l7xx9cff6a0f1f314d908904d1e97b8d86db;
+                    },
+                success : function(res){
+                    
+                    var str = '';
+                    
+                    $(res).find('item').each(function(){
+                        
+                        var baseDateTime = $(this).find('timeObservation').text();
+                        var location = $(this).find('name').text();
+                        var wdir = $(this).find('wdir').text();
+                        var wspd = $(this).find('wspd').text();
+                        var precipitation = $(this).find('precipitation').text();
+                        var category = $(this).find('category').text();
+                        var category = $(this).find('category').text();
+                        var category = $(this).find('category').text();
+                        var fcstDate = $(this).find('fcstDate').text();
+                        var fcstTime = $(this).find('fcstTime').text();
+                        var fcstValue = $(this).find('fcstValue').text();
+                        var nx = $(this).find('nx').text();
+                        var ny = $(this).find('ny').text();
+                        var cname = '';
+                        
+                        if(category=='POP'){
+                            cname = '강수확률';
+                        } else if(category=='PTY'){
+                            cname = '강수형태';
+                        } else if(category=='R06'){
+                            cname = '6시간 강수량';
+                        } else if(category=='REH'){
+                            cname = '습도';
+                        } else if(category=='S06'){
+                            cname = '6시간 신적설';
+                        } else if(category=='SKY'){
+                            cname = '하늘상태';
+                        } else if(category=='T3H'){
+                            cname = '3시간 기온';
+                        } else if(category=='TMN'){
+                            cname = '아침 최저기온';
+                        } else if(category=='TMX'){
+                            cname = '낮 최고기온';
+                        } else if(category=='UUU'){
+                            cname = '풍속(동서성분)';
+                        } else if(category=='VVV'){
+                            cname = '풍속(남북성분)';
+                        } else if(category=='WAV'){
+                            cname = '파고';
+                        } else if(category=='VEC'){
+                            cname = '풍향';
+                        } else if(category=='WSD'){
+                            cname = '풍속';
+                        }
+                        
+                        
+                        
+                        str += '<div class="box">\n';
+                        str += '<div>기준 날짜/시간 : '+baseDateTime+ '</div>\n';
+                        str += '<div>카테고리 : '+cname+'</div>\n';
+                        str += '<div>관측 날짜 : '+fcstDate+'</div>\n';
+                        str += '<div>관측 시간 : '+fcstTime+'</div>\n';
+                        str += '<div>관측 값 : '+fcstValue+'</div>\n';
+                        str += '</div>\n';
+                    });
+                    
+                    
+                    $('body').html(str);
+                }                
+            });
+            
+        });
+    </script>
+    
+</body>
+
+</html>

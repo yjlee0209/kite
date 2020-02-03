@@ -2,6 +2,15 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page trimDirectiveWhitespaces="true"%>
+
+<c:if test="${loginInfo eq null}">
+<script>
+	alert('로그인이 필요한 서비스입니다.');
+	location.href='<c:url value="/member/login"/>';
+</script>
+
+</c:if>
+
 <!DOCTYPE html>
 <html>
 <head>

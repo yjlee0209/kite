@@ -1,0 +1,40 @@
+<html>
+
+<head>
+    <title>예보</title>
+    <!--<script src="https://code.jquery.com/jquery-1.12.1.min.js"></script>-->
+</head>
+
+<body>
+    
+    <!--<a href="https://apis.openapi.sk.com/weather/current/minutely?version=2&city=서울&county=강남구&village=도곡동&appKey=l7xx9cff6a0f1f314d908904d1e97b8d86db"> 확인 </a>-->
+    
+    <a href="http://apis.data.go.kr/1360000/VilageFcstInfoService/getVilageFcst?serviceKey=sx4qVeJHIKxtUg%2BAE0CSfDypF2P25eD%2FnI4pQ8nCsAucQjGjNqjBJGV%2BqSjVFQhMGoUxEQ1FoQi7VHDl9BOpTQ%3D%3D&numOfRows=10&pageNo=1&base_date=20200129&base_time=0200&nx=61&ny=125"> 확인 </a>
+    
+    
+    <script>
+        $(document).ready(function(){
+           
+            $.ajax({
+                url : 'http://apis.data.go.kr/1360000/VilageFcstInfoService/getVilageFcst',
+                data : {                    serviceKey:'sx4qVeJHIKxtUg%2BAE0CSfDypF2P25eD%2FnI4pQ8nCsAucQjGjNqjBJGV%2BqSjVFQhMGoUxEQ1FoQi7VHDl9BOpTQ%3D%3D',
+                    numOfRows:10,
+                    pageNo:1,
+                    base_date:'20200129',
+                    base_time:'0200',
+                    nx:61,
+                    ny:125,
+                    ftype:'ODAM'
+                },
+                success : function(res){
+                    alert(res);
+                    $('body').html(res);
+                }                
+            });
+            
+        });
+    </script>
+    
+</body>
+
+</html>

@@ -3,6 +3,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page trimDirectiveWhitespaces="true"%>
+
+<c:if test="${loginInfo eq null}">
+<script>
+	alert('로그인이 필요한 서비스입니다.');
+	location.href='<c:url value="/member/login"/>';
+</script>
+
+</c:if>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +20,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	<title>Index</title>
+	<title>방명록 리스트</title>
 
 	<!-- 기본 CSS 자리 시작 -->
 	
@@ -67,7 +76,7 @@
 	       			<td> <fmt:formatDate value="${article.regdate}" pattern="yyyy. MM. dd"/> </td>
 	       			<td>
 	       				<a href="edit?idx=${article.idx}" class="btn btn-primary"> 수정 </a>
-	       				<a href="delete?idx=${article.idx}" class="btn btn-danger"> 삭제 </a>
+	       				<a href="javascript:del(${article.idx})" class="btn btn-danger"> 삭제 </a>
 	       			</td>			
        			</tr> 
 			</c:forEach>
@@ -113,6 +122,18 @@
 	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
 
 	<!-- 푸터 끝 -->
+	
+	<script>
+	
+		function del(idx){
+			
+			if(confirm('삭제하시겠습니까?')) {
+				location.href='delete?idx='+idx;
+			}
+			
+		}
+	
+	</script>
 	
 	
 </body>
