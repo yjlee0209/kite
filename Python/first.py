@@ -136,7 +136,7 @@ print("   <<사용자 데이터 입력>>")
 
 
 #문자열을 다루는 기본함수
-string_str = "hello python"
+string_str = "Hello Python"
 
 string_a = "{}".format(20)
 print(string_a)
@@ -151,3 +151,19 @@ print(format_b)
 print(format_c)
 print(format_d)
 print(type(format_d))
+
+print(string_str.upper())
+print(string_str.lower())
+
+string_list = string_str.split(" ")
+print(string_list)
+
+string_str = "001|code1234|spaceA|15000"
+string_list = string_str.split("|")
+print(string_list)
+print("PK : ", string_list[0])
+print("CODE : ", string_list[1])
+print("Name : ", string_list[2])
+print("Price : ", int(string_list[3])*1.15)
+
+
