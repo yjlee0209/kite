@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+    	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
+    	crossorigin="anonymous"> -->
+    	
+	<!--CDN 방식으로 jQuery 라이브러리를 로드-->
+	<script src="https://code.jquery.com/jquery-1.12.4.js"
+		integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU="
+		crossorigin="anonymous"></script>
+	
+	
+	<style>
+		input[type=button] {
+			background-color: #EEE;
+			border: 1px solid #AAA;
+			padding: 15px 0;
+			margin: 10px;
+			display: block;
+			font-size: 24px;
+		}
+		.select_r {
+			background-color: red;
+			color: #FFF
+		}
+		.select_y {
+			background-color: yellow;
+			color: #FFF
+		}
+		.select_g {
+			background-color: green;
+			color: #FFF
+		}
+	</style>
+
+</head>
+<body>
+
+	<h1>신호등 콘트롤러</h1>
+	<input type="button" value="빨간 LED ON" id="btn_r"> <br>
+ 	<input type="button" value="노란 LED ON" id="btn_y"> <br>
+ 	<input type="button" value="초록 LED ON" id="btn_g"> <br>
+ 
+ <script>
+ 
+ 	$(document).ready(function(){
+ 		
+ 		$('#btn_r').click(function(){
+ 			$.ajax({
+ 				url:'http://192.168.0.67:5000/sw_r',
+ 				success:function(res){
+ 					if(res=='1'){
+ 						$('#btn_r').val('빨간 LED OFF');
+ 						$('#btn_r').addClass('select_r')
+ 					} else {
+ 						$('#btn_r').val('빨간 LED ON');
+ 						$('#btn_r').removeClass('select_r')
+ 					}
+ 				}
+ 			});
+ 		});
+ 		
+ 		$('#btn_y').click(function(){
+ 			$.ajax({
+ 				url:'http://192.168.0.67:5000/sw_y',
+ 				success:function(res){
+ 					if(res=='1'){
+ 						$('#btn_y').val('노란 LED OFF');
+ 						$('#btn_y').addClass('select_y')
+ 					} else {
+ 						$('#btn_y').val('노란 LED ON');
+ 						$('#btn_y').removeClass('select_y')
+ 					}
+ 				}
+ 			});
+ 		});
+ 		
+ 		$('#btn_g').click(function(){
+ 			$.ajax({
+ 				url:'http://192.168.0.67:5000/sw_g',
+ 				success:function(res){
+ 					if(res=='1'){
+ 						$('#btn_g').val('초록 LED OFF');
+ 						$('#btn_g').addClass('select_g')
+ 					} else {
+ 						$('#btn_g').val('초록 LED ON');
+ 						$('#btn_g').removeClass('select_g')
+ 					}
+ 				}
+ 			});
+ 		});
+ 		
+ 	});
+ 
+</script>
+ 
+</body>
+</html>
